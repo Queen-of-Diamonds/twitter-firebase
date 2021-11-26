@@ -37,6 +37,7 @@ const useAuth = () => {
   };
 
   const signup = async (username, password) => {
+    debugger;
     const credentials = await createUserWithEmailAndPassword(
       firebaseAuth,
       username,
@@ -47,6 +48,7 @@ const useAuth = () => {
       isAuthenticated.value = true;
       user.value = credentials.user.email;
     }
+    debugger;
   };
 
   const logout = async () => {

@@ -1,3 +1,78 @@
+<script setup>
+import { useRouter } from "vue-router";
+import { useForm, useField } from "vee-validate";
+import * as yup from "yup";
+
+const schema = yup.object({
+  username: yup
+    .string()
+    .required()
+    .email()
+    .label("Email"),
+  password: yup
+    .string()
+    .required()
+    .min(8)
+    .label("Password"),
+});
+
+useForm({
+  validationSchema: schema,
+});
+
+const { value: username, errorMessage: emailError } = useField("username");
+const { value: password, errorMessage: passwordError } = useField("password");
+
+import useAuth from "../composable/useAuth";
+import useError from "../composable/useError";
+
+const { isAuthenticated, login, signup, googleLogin } = useAuth();
+
+const router = useRouter();
+
+const loggingIn = async () => {
+  console.log(
+    "🚀 ~ file: Logout.vue ~ line 35 ~ loggingIn ~ password.value",
+    password.value
+  );
+  console.log(
+    "🚀 ~ file: Logout.vue ~ line 35 ~ loggingIn ~ username.value",
+    username.value
+  );
+  await login(username.value, password.value);
+
+  if (isAuthenticated.value) {
+    router.push("/");
+  } else {
+    setError("Invalid username or password");
+    // start();
+  }
+};
+
+const signingUp = async () => {
+  await signup(username.value, password.value);
+  goToHome();
+};
+
+const google = async () => {
+  await googleLogin();
+  goToHome();
+};
+
+const goToHome = () => {
+  if (isAuthenticated.value) {
+    router.push("/");
+  } else {
+    setError("Invalid username or password");
+    // start();
+  }
+};
+
+const { error, setError } = useError();
+
+// const { ready, start } = useTimeout(3000, { controls: true });
+</script>
+
 <template>
   <div
     class="
@@ -30,7 +105,7 @@
           type="text"
           class="p-2 border-2 rounded-lg"
           placeholder="Email"
-          v-model="email"
+          v-model="username"
         />
         <span class="text-xs text-center text-red-500">{{ emailError }}</span>
         <input
