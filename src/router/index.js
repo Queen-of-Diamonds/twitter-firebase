@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import Logout from "../views/Logout.vue";
 
 const routes = [
   {
@@ -33,7 +34,7 @@ const routes = [
   {
     path: "/logout",
     name: "Logout",
-    component: Home,
+    component: Logout,
     iconClass: "fas fa-sign-out-alt",
     mainMenu: true,
   },
