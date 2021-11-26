@@ -12,7 +12,7 @@
       <router-view />
     </main>
 
-    <footer class="grid grid-cols-4 border-t border-gray-600">
+    <footer class="grid grid-cols-5 border-t border-gray-600">
       <router-link
         v-for="(route, i) in routes"
         :key="i"
