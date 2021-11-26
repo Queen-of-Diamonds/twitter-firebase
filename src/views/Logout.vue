@@ -143,15 +143,6 @@ const { error, setError } = useError();
             alt="google"
           />
         </button>
-        <button
-          @click="anonymous"
-          class="flex justify-center bg-white py-2 rounded-lg hover:bg-gray-300"
-        >
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/OOjs_UI_icon_userAnonymous.svg/20px-OOjs_UI_icon_userAnonymous.svg.png"
-            alt="anonymous"
-          />
-        </button>
       </form>
     </div>
     <div
