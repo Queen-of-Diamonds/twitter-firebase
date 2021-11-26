@@ -1,11 +1,11 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: process.env.VUE_APP_API_KEY,
+  apiKey: "AIzaSyCMtX6Jne10D06QiGRz5NfEdr7b2ATjI7E",
   authDomain: "twitter-firebase-bac96.firebaseapp.com",
   projectId: "twitter-firebase-bac96",
   storageBucket: "twitter-firebase-bac96.appspot.com",
-  messagingSenderId: process.env.VUE_APP_SENDER_ID,
+  messagingSenderId: "234172260570",
   appId: "1:234172260570:web:9e586444de0706f44805e3",
 };
 
