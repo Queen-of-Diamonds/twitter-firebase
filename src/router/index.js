@@ -34,7 +34,7 @@ const routes = [
     path: "/logout",
     name: "Logout",
     component: Home,
-    iconClass: "fas fa-sign-out",
+    iconClass: "fas fa-sign-out-alt",
     mainMenu: true,
   },
   {
