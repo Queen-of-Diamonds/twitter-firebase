@@ -9,6 +9,4 @@ const firebaseConfig = {
   appId: "1:234172260570:web:9e586444de0706f44805e3",
 };
 
-process.env.VUE_APP_API_KEY;
-
 initializeApp(firebaseConfig);
