@@ -122,7 +122,7 @@ const { error, setError } = useError();
           <button
             type="submit"
             @submit.prevent="loggingIn"
-            class="w-1/2 py-2 text-white-200 bg-blue-600 rounded-lg"
+            class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Login
           </button>
