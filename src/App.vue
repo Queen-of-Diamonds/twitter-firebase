@@ -47,13 +47,13 @@ export default {
   setup() {
     const routes = ref([]);
     const router = useRouter();
-    const { logout } = useAuth()
+    const { logout } = useAuth();
     onBeforeMount(() => {
       routes.value = router.options.routes.filter((r) => r.mainMenu);
     });
     return {
       routes,
-      logout
+      logout,
     };
   },
 };

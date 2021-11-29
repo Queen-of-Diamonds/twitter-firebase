@@ -40,7 +40,7 @@ const loggingIn = async () => {
     username.value
   );
   const result = await login(username.value, password.value);
-  console.log("dvdb - loggingIn - result", result)
+  console.log("dvdb - loggingIn - result", result);
   // @Christie: currently this debugger isn't even hit. So I'm looking next inside that imported login function.
   // #following-the-threads
   debugger;
@@ -55,11 +55,14 @@ const loggingIn = async () => {
 const signingUp = async () => {
   try {
     await signup(username.value, password.value);
-    console.log("dvdb - signingUp - username.value", username.value)
-    console.log("dvdb - loggingIn - isAuthenticated.value", isAuthenticated.value)
+    console.log("dvdb - signingUp - username.value", username.value);
+    console.log(
+      "dvdb - loggingIn - isAuthenticated.value",
+      isAuthenticated.value
+    );
     goToHome();
   } catch (error) {
-    console.error("dvdb - signingUp - error", error)
+    console.error("dvdb - signingUp - error", error);
   }
 };
 
@@ -89,6 +92,7 @@ const { error, setError } = useError();
       items-center
       justify-center
       space-y-12
+      pt-24 pb-10
       min-h-screen-nonav
     "
   >
@@ -101,6 +105,7 @@ const { error, setError } = useError();
         bg-gray-200
         rounded-lg
         shadow-2xl
+        pt-6 pb-10
       "
     >
       <img
@@ -138,7 +143,7 @@ const { error, setError } = useError();
 
           <button
             @click="signingUp"
-            class="w-1/2 py-2 text-white-200 bg-blue-600 rounded-lg"
+            class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Sign Up
           </button>

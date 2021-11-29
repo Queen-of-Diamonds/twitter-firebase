@@ -11,7 +11,7 @@ import vweets from "../vweets";
 
 export default {
   components: {
-    Tweet
+    Tweet,
   },
   setup() {
     const tweets = ref(vweets);
