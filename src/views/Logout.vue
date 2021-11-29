@@ -92,7 +92,7 @@ const { error, setError } = useError();
       items-center
       justify-center
       space-y-12
-      pt-24 pb-10
+      pt-20 pb-10
       min-h-screen-nonav
     "
   >

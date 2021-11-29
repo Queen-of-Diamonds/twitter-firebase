@@ -7,11 +7,13 @@
 
       <h1 class="text-white font-black text-xl">{{ $route.name }}</h1>
       <div class="flex-grow"></div>
-      <button
-        @click="logout"
-        class="inline-flex items-center px-6 py-3 ml-6 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      >
-        Logout
+      <button @click="logout">
+        <router-link
+          to="/logout"
+          class="inline-flex items-center px-6 py-3 ml-6 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </router-link>
       </button>
     </header>
 
