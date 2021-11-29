@@ -1,5 +1,5 @@
 import { ref, watch } from "vue";
-import {useStore} from "vuex";
+import { useStore } from "vuex";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -12,7 +12,6 @@ import {
  */
 import { firebaseAuth } from "./useFirebase";
 
-
 const isAuthenticated = ref(false);
 
 const user = ref("");
@@ -22,7 +21,7 @@ const useAuth = () => {
     const provider = new GoogleAuthProvider();
     const credentials = await signInWithPopup(firebaseAuth, provider);
     // @Christie: see how much usefull info comes back?
-    console.log("dvdb - googleLogin - credentials", credentials)
+    console.log("dvdb - googleLogin - credentials", credentials);
     if (credentials.user) {
       isAuthenticated.value = true;
       user.value = credentials.user.displayName;
@@ -39,13 +38,12 @@ const useAuth = () => {
         firebaseAuth,
         username,
         password
-        );
-        
-        if (credentials.user) {
-          isAuthenticated.value = true;
-          user.value = credentials.user.email;
-        }
-      
+      );
+
+      if (credentials.user) {
+        isAuthenticated.value = true;
+        user.value = credentials.user.email;
+      }
     } catch (error) {
       console.error("dvdb - login - error", error);
       // Sure enough: this error logs out just before this debugger hits.
@@ -56,39 +54,45 @@ const useAuth = () => {
       // That's where components like these come in handy: https://tailwindui.com/components/application-ui/feedback/alerts
       debugger;
     }
-      // but this one isn't hit. So the problem is between these two debugger-break-points.
-      debugger;
-    };
-    
-    const signup = async (username, password) => {
+    // but this one isn't hit. So the problem is between these two debugger-break-points.
+    debugger;
+  };
+
+  const signup = async (username, password) => {
+    try {
       const credentials = await createUserWithEmailAndPassword(
         firebaseAuth,
         username,
         password
-        );
-        
-        if (credentials.user) {
-          isAuthenticated.value = true;
-          user.value = credentials.user.email;
-        }
-      };
-      const store = useStore();
+      );
+
+      if (credentials.user) {
+        isAuthenticated.value = true;
+        user.value = credentials.user.email;
+      }
+    } catch (error) {
+      console.error("dvdb - login - error", error);
       debugger;
-      watch(isAuthenticated, (value) => {
-        store.commit('set', { property: "isLoggedIn", value: value });
-        
-        const result = store.state.isLoggedIn
-        console.log("store.state.isLoggedIn: ", result)
-        
-      })
-      
-      const logout = async () => {
-        await signOut(firebaseAuth);
-        isAuthenticated.value = false;
-        user.value = "";
-      };
-      
-      return { isAuthenticated, login, signup, logout, user, googleLogin };
+    }
+    debugger;
+  };
+
+  const store = useStore();
+  debugger;
+  watch(isAuthenticated, (value) => {
+    store.commit("set", { property: "isLoggedIn", value: value });
+
+    const result = store.state.isLoggedIn;
+    console.log("store.state.isLoggedIn: ", result);
+  });
+
+  const logout = async () => {
+    await signOut(firebaseAuth);
+    isAuthenticated.value = false;
+    user.value = "";
+  };
+
+  return { isAuthenticated, login, signup, logout, user, googleLogin };
 };
 
 export default useAuth;
