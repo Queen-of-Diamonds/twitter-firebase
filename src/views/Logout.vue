@@ -39,8 +39,11 @@ const loggingIn = async () => {
     "🚀 ~ file: Logout.vue ~ line 35 ~ loggingIn ~ username.value",
     username.value
   );
-  await login(username.value, password.value);
-
+  const result = await login(username.value, password.value);
+  console.log("dvdb - loggingIn - result", result)
+  // @Christie: currently this debugger isn't even hit. So I'm looking next inside that imported login function.
+  // #following-the-threads
+  debugger;
   if (isAuthenticated.value) {
     router.push("/");
   } else {
@@ -50,8 +53,14 @@ const loggingIn = async () => {
 };
 
 const signingUp = async () => {
-  await signup(username.value, password.value);
-  goToHome();
+  try {
+    await signup(username.value, password.value);
+    console.log("dvdb - signingUp - username.value", username.value)
+    console.log("dvdb - loggingIn - isAuthenticated.value", isAuthenticated.value)
+    goToHome();
+  } catch (error) {
+    console.error("dvdb - signingUp - error", error)
+  }
 };
 
 const google = async () => {

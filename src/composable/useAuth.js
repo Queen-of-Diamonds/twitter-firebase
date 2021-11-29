@@ -30,16 +30,34 @@ const useAuth = () => {
   };
 
   const login = async (username, password) => {
-    const credentials = await signInWithEmailAndPassword(
-      firebaseAuth,
-      username,
-      password
-      );
+    // @Christie: this debugger is hit
+    debugger;
+    // So I use a try catch block here to see if I can catch an error,
+    // an error between here and that next break-point.
+    try {
+      const credentials = await signInWithEmailAndPassword(
+        firebaseAuth,
+        username,
+        password
+        );
+        
+        if (credentials.user) {
+          isAuthenticated.value = true;
+          user.value = credentials.user.email;
+        }
       
-      if (credentials.user) {
-        isAuthenticated.value = true;
-        user.value = credentials.user.email;
-      }
+    } catch (error) {
+      console.error("dvdb - login - error", error);
+      // Sure enough: this error logs out just before this debugger hits.
+      // Error is: FirebaseError: Firebase: Error (auth/user-not-found)
+      // So one of the regular jobs of a FE Dev, is to parse these error messages,
+      // and make them part of the UX.
+      // You know, like how google log-in guides you through the form filling.
+      // That's where components like these come in handy: https://tailwindui.com/components/application-ui/feedback/alerts
+      debugger;
+    }
+      // but this one isn't hit. So the problem is between these two debugger-break-points.
+      debugger;
     };
     
     const signup = async (username, password) => {
@@ -54,8 +72,8 @@ const useAuth = () => {
           user.value = credentials.user.email;
         }
       };
-
       const store = useStore();
+      debugger;
       watch(isAuthenticated, (value) => {
         store.commit('set', { property: "isLoggedIn", value: value });
         
